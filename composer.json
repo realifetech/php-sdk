@@ -1,0 +1,23 @@
+{
+    "name": "livestyled/php-sdk",
+    "description": "LiveStyled APIs PHP SDK",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Amir Montazer",
+            "email": "amir.montazer@livestyled.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^5.3.3|^6.2.1|^7.0",
+        "guzzlehttp/psr7": "^1.4.1",
+        "guzzlehttp/promises": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "LiveStyled\\": "src/"
+        }
+    }
+}
