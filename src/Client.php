@@ -4,6 +4,7 @@ namespace LiveStyled;
 
 use GuzzleHttp\Exception\BadResponseException;
 use LiveStyled\Exception\EntityCreationException;
+use LiveStyled\Exception\EntityFetchException;
 
 abstract class Client
 {
@@ -68,7 +69,7 @@ abstract class Client
      * @param       $id
      * @param array $filters
      * @return mixed
-     * @throws EntityCreationException
+     * @throws EntityFetchException
      */
     public function find($id, $filters = [])
     {
@@ -78,7 +79,7 @@ abstract class Client
                 'query'   => $filters
             ]);
         } catch (BadResponseException $e) {
-            throw new EntityCreationException($e->getMessage(), $e->getCode(), $e);
+            throw new EntityFetchException($e->getMessage(), $e->getCode(), $e);
         }
 
         return json_decode($response->getBody()
@@ -90,7 +91,7 @@ abstract class Client
      * @param int   $pageSize
      * @param int   $page
      * @return array
-     * @throws EntityCreationException
+     * @throws EntityFetchException
      */
     public function findAll($filters = [], $pageSize = 10, $page = 1)
     {
@@ -100,7 +101,7 @@ abstract class Client
                 'query'   => array_merge(compact('pageSize', 'page'), $filters)
             ]);
         } catch (BadResponseException $e) {
-            throw new EntityCreationException($e->getMessage(), $e->getCode(), $e);
+            throw new EntityFetchException($e->getMessage(), $e->getCode(), $e);
         }
 
         return json_decode($response->getBody()
