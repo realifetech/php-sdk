@@ -1,6 +1,6 @@
 <?php
 
-namespace LiveStyled\Event;
+namespace LiveStyled\News;
 
 use LiveStyled\Client;
 use LiveStyled\CrudClient;
