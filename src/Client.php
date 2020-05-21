@@ -21,12 +21,12 @@ abstract class Client
     public function __construct($domain, $credentials, $scheme = null)
     {
         $scheme            = $scheme ?? self::DEFAULT_SCHEME;
-        $this->domain      = $this->addSchema($domain, $scheme);
+        $this->domain      = $this->addScheme($domain, $scheme);
         $this->credentials = $credentials;
         $this->httpClient  = new \GuzzleHttp\Client(['base_uri' => rtrim($this->domain, '/'), 'timeout' => 2.0]);
     }
 
-    function addSchema($domain, $scheme)
+    function addScheme($domain, $scheme)
     {
         return parse_url($domain, PHP_URL_SCHEME) === null ?
             $scheme . $domain : $domain;
