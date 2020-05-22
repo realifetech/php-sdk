@@ -8,6 +8,7 @@ use LiveStyled\Exception\EntityFetchException;
 
 abstract class Client
 {
+    const DEFAULT_SCHEME = 'https://';
     protected $domain;
 
     protected $credentials;
@@ -17,11 +18,18 @@ abstract class Client
      */
     protected $httpClient;
 
-    public function __construct($domain, $credentials)
+    public function __construct($domain, $credentials, $scheme = null)
     {
-        $this->domain      = $domain;
+        $scheme            = $scheme ?? self::DEFAULT_SCHEME;
+        $this->domain      = $this->addScheme($domain, $scheme);
         $this->credentials = $credentials;
         $this->httpClient  = new \GuzzleHttp\Client(['base_uri' => rtrim($this->domain, '/'), 'timeout' => 2.0]);
+    }
+
+    function addScheme($domain, $scheme)
+    {
+        return parse_url($domain, PHP_URL_SCHEME) === null ?
+            $scheme . $domain : $domain;
     }
 
     /**
