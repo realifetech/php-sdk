@@ -23,7 +23,7 @@ abstract class Client
         $scheme            = $scheme ?? self::DEFAULT_SCHEME;
         $this->domain      = $this->addScheme($domain, $scheme);
         $this->credentials = $credentials;
-        $this->httpClient  = new \GuzzleHttp\Client(['base_uri' => rtrim($this->domain, '/'), 'timeout' => 2.0]);
+        $this->httpClient  = new \GuzzleHttp\Client(['base_uri' => rtrim($this->domain, '/'), 'timeout' => 5.0]);
     }
 
     function addScheme($domain, $scheme)
