@@ -18,12 +18,15 @@ abstract class Client
      */
     protected $httpClient;
 
-    public function __construct($domain, $credentials, $scheme = null)
+    public function __construct($domain, $credentials, $scheme = null, $timeout = 2.0)
     {
         $scheme            = $scheme ?? self::DEFAULT_SCHEME;
         $this->domain      = $this->addScheme($domain, $scheme);
         $this->credentials = $credentials;
-        $this->httpClient  = new \GuzzleHttp\Client(['base_uri' => rtrim($this->domain, '/'), 'timeout' => 5.0]);
+        $this->httpClient  = new \GuzzleHttp\Client([
+            'base_uri' => rtrim($this->domain, '/'),
+            'timeout' => $timeout
+        ]);
     }
 
     function addScheme($domain, $scheme)
