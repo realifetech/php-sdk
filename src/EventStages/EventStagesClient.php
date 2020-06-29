@@ -5,7 +5,7 @@ namespace LiveStyled\EventStages;
 use LiveStyled\Client;
 use LiveStyled\CrudClient;
 
-class EventStageClient extends Client implements CrudClient
+class EventStagesClient extends Client implements CrudClient
 {
     protected function getPath()
     {
