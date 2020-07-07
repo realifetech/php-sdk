@@ -51,9 +51,9 @@ use LiveStyled\SportVenue\SportVenueService;
 use LiveStyled\Team\TeamService;
 use LiveStyled\Ticket\TicketService;
 use LiveStyled\TicketAuth\TicketAuthService;
-use LiveStyled\TicketIntegration\TicketIntegration;
+use LiveStyled\TicketIntegration\TicketIntegrationService;
 use LiveStyled\UsefulInfo\UsefulInfoService;
-use LiveStyled\UsefulInfoTranslation\UsefulInfoTranslation;
+use LiveStyled\UsefulInfoTranslation\UsefulInfoTranslationService;
 use LiveStyled\User\UsersService;
 use LiveStyled\UserEmail\UserEmailService;
 use LiveStyled\UserInfo\UserInfoService;
@@ -168,9 +168,9 @@ class ServiceMap
         self::TEAM => TeamService::class,
         self::TICKET => TicketService::class,
         self::TICKET_AUTH => TicketAuthService::class,
-        self::TICKET_INTEGRATION => TicketIntegration::class,
+        self::TICKET_INTEGRATION => TicketIntegrationService::class,
         self::USEFUL_INFO => UsefulInfoService::class,
-        self::USEFUL_INFO_TRANSLATION => UsefulInfoTranslation::class,
+        self::USEFUL_INFO_TRANSLATION => UsefulInfoTranslationService::class,
         self::USER => UsersService::class,
         self::USER_EMAIL => UserEmailService::class,
         self::USER_INFO => UserInfoService::class,
