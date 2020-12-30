@@ -2,7 +2,7 @@
 
 namespace LiveStyled;
 
-use LiveStyled\Exception\TransferException;
+use LiveStyled\Exception\EntityFetchException;
 
 interface RelationClientInterface
 {
@@ -17,9 +17,8 @@ interface RelationClientInterface
      * @param array $filters
      * @param int   $pageSize
      * @param int   $page
-     *
      * @return array
-     * @throws TransferException
+     * @throws EntityFetchException
      */
-    public function findAll($filters = [], $pageSize = 10, $page = 0): array;
+    public function findAll($filters = [], $pageSize = 10, $page = 1);
 }
