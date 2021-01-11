@@ -10,10 +10,14 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "guzzlehttp/guzzle": "^5.3.3|^6.2.1|^7.0",
         "guzzlehttp/psr7": "^1.4.1",
-        "guzzlehttp/promises": "^1.0"
+        "guzzlehttp/promises": "^1.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.1"
     },
     "autoload": {
         "psr-4": {
