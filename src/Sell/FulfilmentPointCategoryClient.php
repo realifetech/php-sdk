@@ -5,10 +5,10 @@ namespace LiveStyled\Sell;
 use LiveStyled\Client;
 use LiveStyled\CrudClient;
 
-class FulfilmentPointClient extends Client implements CrudClient
+class FulfilmentPointCategoryClient extends Client implements CrudClient
 {
     protected function getPath()
     {
-        return '/v4/sell/fulfilment_points';
+        return '/v4/sell/fulfilment_point_categories';
     }
 }
