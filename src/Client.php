@@ -120,6 +120,25 @@ abstract class Client
     }
 
     /**
+     * @param string $path
+     *
+     * @return array
+     * @throws EntityFetchException
+     */
+    public function getByGivenPath(string $path): array
+    {
+        try {
+            $response = $this->httpClient->get($path, [
+                'headers' => $this->getHeaders(),
+            ]);
+        } catch (BadResponseException $e) {
+            throw new EntityFetchException($e->getMessage(), $e->getCode(), $e);
+        }
+
+        return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
      * @param bool $patch
      * @return array
      */

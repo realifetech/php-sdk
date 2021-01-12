@@ -3,10 +3,10 @@
 
 namespace LiveStyled\UserManagement;
 
-use LiveStyled\Client;
 use LiveStyled\CrudClient;
+use LiveStyled\RelationClient;
 
-class AudienceDeviceClient extends Client implements CrudClient
+class AudienceDeviceClient extends RelationClient implements CrudClient
 {
     protected function getPath()
     {
