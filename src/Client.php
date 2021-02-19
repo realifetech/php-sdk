@@ -46,6 +46,7 @@ abstract class Client
             $response = $this->httpClient->post($this->getPath(), [
                 'body'    => json_encode($data),
                 'headers' => $this->getHeaders(),
+                'connect_timeout' => 1
             ]);
         } catch (BadResponseException $e) {
             throw new EntityCreationException($e->getMessage(), $e->getCode(), $e);
@@ -67,6 +68,7 @@ abstract class Client
             $response = $this->httpClient->patch($this->getPathWithId($id), [
                 'body'    => json_encode($data),
                 'headers' => $this->getHeaders(true),
+                'connect_timeout' => 1
             ]);
         } catch (BadResponseException $e) {
             throw new EntityCreationException($e->getMessage(), $e->getCode(), $e);
@@ -87,7 +89,8 @@ abstract class Client
         try {
             $response = $this->httpClient->get($this->getPathWithId($id), [
                 'headers' => $this->getHeaders(),
-                'query'   => $filters
+                'query'   => $filters,
+                'connect_timeout' => 1
             ]);
         } catch (BadResponseException $e) {
             throw new EntityFetchException($e->getMessage(), $e->getCode(), $e);
@@ -109,7 +112,8 @@ abstract class Client
         try {
             $response = $this->httpClient->get($this->getPath(), [
                 'headers' => $this->getHeaders(),
-                'query'   => array_merge(compact('pageSize', 'page'), $filters)
+                'query'   => array_merge(compact('pageSize', 'page'), $filters),
+                'connect_timeout' => 1
             ]);
         } catch (BadResponseException $e) {
             throw new EntityFetchException($e->getMessage(), $e->getCode(), $e);
@@ -120,6 +124,26 @@ abstract class Client
     }
 
     /**
+     * @param string $path
+     *
+     * @return array
+     * @throws EntityFetchException
+     */
+    public function getByGivenPath(string $path): array
+    {
+        try {
+            $response = $this->httpClient->get($path, [
+                'headers' => $this->getHeaders(),
+                'connect_timeout' => 1
+            ]);
+        } catch (BadResponseException $e) {
+            throw new EntityFetchException($e->getMessage(), $e->getCode(), $e);
+        }
+
+        return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
      * @param bool $patch
      * @return array
      */
@@ -127,7 +151,8 @@ abstract class Client
     {
         $headers = [
             'x-api-key'    => $this->credentials['api_key'],
-            'content-type' => 'application/json'
+            'content-type' => 'application/json',
+            'connection'   => 'close'
         ];
 
         if ($patch) {
