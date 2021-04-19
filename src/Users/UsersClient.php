@@ -31,7 +31,7 @@ class UsersClient extends Client implements CrudClient
         }
 
         return json_decode($response->getBody()
-            ->getContents());
+            ->getContents(), true);
     }
 
     /**
