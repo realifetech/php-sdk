@@ -9,6 +9,6 @@ class CompetitionClient extends Client implements CrudClient
 {
     protected function getPath()
     {
-        return '/v4/competitions';
+        return '/v4/event_management/competitions';
     }
 }
